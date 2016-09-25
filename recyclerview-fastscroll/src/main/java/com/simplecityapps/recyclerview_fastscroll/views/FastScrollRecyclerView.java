@@ -334,6 +334,10 @@ public class FastScrollRecyclerView extends RecyclerView implements RecyclerView
         mStateChangeListener = stateChangeListener;
     }
 
+    public void setFastScrollEnabled(boolean enabled) {
+        mScrollbar.setEnabled(enabled);
+    }
+
     public interface SectionedAdapter {
         @NonNull
         String getSectionName(int position);

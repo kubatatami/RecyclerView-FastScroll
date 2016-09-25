@@ -72,6 +72,7 @@ public class FastScroller {
     private int mAutoHideDelay = DEFAULT_AUTO_HIDE_DELAY;
     private boolean mAutoHideEnabled = true;
     private final Runnable mHideRunnable;
+    private boolean enabled;
 
     public FastScroller(Context context, FastScrollRecyclerView recyclerView, AttributeSet attrs) {
 
@@ -130,7 +131,9 @@ public class FastScroller {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                show();
+                if (enabled) {
+                    show();
+                }
             }
         });
 
@@ -347,6 +350,13 @@ public class FastScroller {
             postAutoHideDelayed();
         } else {
             cancelAutoHide();
+        }
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+        if (!enabled) {
+            mHideRunnable.run();
         }
     }
 }
