@@ -359,4 +359,8 @@ public class FastScroller {
             mHideRunnable.run();
         }
     }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
 }
